@@ -1,15 +1,16 @@
 import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Colors from '../../../styles/Colors';
 
 const Container = ({
-  children,
   title,
   actionLabelText,
   actionButtonText,
   onPressActionButton,
+  children,
 }) => {
   return (
     <View style={styles.container}>
@@ -36,22 +37,20 @@ const Container = ({
   );
 };
 
-export default Container;
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.asphalt,
-    padding: 8,
+    borderRadius: 5,
     borderStyle: 'solid',
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: 5,
     margin: 5,
+    padding: 8,
   },
   title: {
-    marginBottom: 5,
     fontSize: 12,
     color: Colors.white,
+    marginBottom: 5,
   },
   actionContainer: {
     flexDirection: 'row',
@@ -65,12 +64,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   actionButtonIcon: {
+    color: Colors.white,
     marginTop: 3,
     marginRight: 2,
-    color: Colors.white,
   },
   actionButtonText: {
     fontSize: 12,
     color: Colors.white,
   },
 });
+
+export default Container;

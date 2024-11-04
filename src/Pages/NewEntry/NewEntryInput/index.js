@@ -1,20 +1,23 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+
 import {TextInputMask} from 'react-native-masked-text';
 
 import Colors from '../../../styles/Colors';
 
-const NewEntryInput = ({value, onChangeValue}) => {
-  const [debit, setDebit] = useState(value < 0 ? -1 : 1);
-  const [debitPrefix, setDebitPrefix] = useState(value < 0 ? '-' : '');
+const NewEntryInput = ({value, onChangeDebit, onChangeValue}) => {
+  const [debit, setDebit] = useState(value <= 0 ? -1 : 1);
+  const [debitPrefix, setDebitPrefix] = useState(value <= 0 ? '-' : '');
 
   const onChangeDebitCredit = () => {
     if (debit < 0) {
       setDebit(1);
       setDebitPrefix('');
+      onChangeDebit(false);
     } else {
       setDebit(-1);
       setDebitPrefix('-');
+      onChangeDebit(true);
     }
 
     onChangeValue(value * -1);
@@ -29,6 +32,7 @@ const NewEntryInput = ({value, onChangeValue}) => {
         <Text style={styles.debitButtonText}>R$</Text>
       </TouchableOpacity>
       <TextInputMask
+        style={styles.input}
         type={'money'}
         options={{
           precision: 2,
@@ -42,18 +46,14 @@ const NewEntryInput = ({value, onChangeValue}) => {
         onChangeText={(maskedValue, rawValue) => {
           onChangeValue(rawValue * debit);
         }}
-        style={styles.input}
       />
     </View>
   );
 };
 
-export default NewEntryInput;
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: Colors.asphalt,
     borderRadius: 15,
     marginHorizontal: 20,
@@ -61,13 +61,13 @@ const styles = StyleSheet.create({
   },
   debitButton: {
     flexDirection: 'row',
-    paddingHorizontal: 20,
     paddingVertical: 20,
+    paddingHorizontal: 20,
   },
   debitButtonPrefix: {
-    minWidth: 8,
     fontSize: 28,
     color: Colors.white,
+    minWidth: 8,
   },
   debitButtonText: {
     fontSize: 28,
@@ -75,10 +75,12 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    fontSize: 28,
+    color: Colors.white,
+    textAlign: 'right',
     paddingLeft: 0,
     paddingRight: 20,
-    fontSize: 28,
-    textAlign: 'right',
-    color: Colors.white,
   },
 });
+
+export default NewEntryInput;

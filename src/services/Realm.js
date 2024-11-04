@@ -8,23 +8,23 @@ import {getDefaultCategories} from './Categories';
 export const getRealm = async () => {
   const realm = await Realm.open({
     schema: [CategorySchema, EntrySchema],
-    schemaVersion: 2,
+    schemaVersion: 3,
   });
 
   // dropDB(realm);
-  initDb(realm);
+  initDB(realm);
 
   return realm;
 };
 
-export const initDb = realm => {
+export const initDB = realm => {
   const categoriesLength = realm.objects('Category').length;
-  console.log(`initDb :: Quantidade de categorias no BD: ${categoriesLength}`);
+  console.log(`initDB :: categories length: ${categoriesLength}`);
 
   if (categoriesLength === 0) {
     const categories = getDefaultCategories();
 
-    console.log(`initDB :: Initing db...`);
+    console.log('initDB :: initing db...');
 
     try {
       realm.write(() => {
@@ -38,7 +38,7 @@ export const initDb = realm => {
       });
     } catch (error) {}
   } else {
-    console.log(`initDB :: Categories already exists... Skipping`);
+    console.log('initDB :: categories already existing... Skypping.');
   }
 };
 

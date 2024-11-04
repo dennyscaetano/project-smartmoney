@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-
 import Colors from '../../../styles/Colors';
 
 const BalancePanelLabel = ({currentBalance}) => {
@@ -11,8 +10,6 @@ const BalancePanelLabel = ({currentBalance}) => {
     </View>
   );
 };
-
-export default BalancePanelLabel;
 
 const styles = StyleSheet.create({
   container: {
@@ -28,3 +25,5 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
 });
+
+export default BalancePanelLabel;

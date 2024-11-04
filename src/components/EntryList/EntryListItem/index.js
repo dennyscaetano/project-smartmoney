@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
+
 import Svg, {Circle, Rect} from 'react-native-svg';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -7,14 +8,15 @@ import Colors from '../../../styles/Colors';
 
 const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
   const bulletLineY = isFirstItem ? 25 : 0;
-  const bulletLineHeight = isLastItem ? 30 : 50;
+  const bulletLineHeight = isLastItem ? 25 : 50;
   const showBulletLine = !(isFirstItem && isLastItem);
-
-  // const bulletColor = entry.category.color || Colors.white;
-  const bulletColor = Colors.white;
+  const bulletColor = entry.category.color || Colors.white;
 
   return (
-    <TouchableOpacity onPress={() => onEntryPress && onEntryPress(entry)}>
+    <TouchableOpacity
+      onPress={() => {
+        onEntryPress && onEntryPress(entry);
+      }}>
       <View style={styles.container}>
         <View style={styles.bullet}>
           <Svg height="50" width="30">
@@ -31,7 +33,7 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
             <Circle
               cx="10"
               cy="25"
-              r={8}
+              r="8"
               stroke={Colors.background}
               strokeWidth="1.5"
               fill={bulletColor}
@@ -63,8 +65,6 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
   );
 };
 
-export default EntryListItem;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -83,19 +83,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   entryAtIcon: {
+    color: Colors.metal,
     marginTop: 2,
     marginRight: 2,
-    color: Colors.metal,
   },
   entryAtText: {
     fontSize: 12,
     color: Colors.metal,
   },
   addressIcon: {
+    color: Colors.metal,
     marginTop: 2,
     marginRight: 2,
     marginLeft: 5,
-    color: Colors.metal,
   },
   addressText: {
     fontSize: 12,
@@ -110,3 +110,5 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
 });
+
+export default EntryListItem;
