@@ -4,9 +4,12 @@ import moment from '../vendors/moment';
 import {getUUID} from './UUID';
 import firestore from '@react-native-firebase/firestore';
 
+import {getUserAuth} from './Auth';
+
 import Colors from '../styles/Colors';
 
 export const getBalance = async (untilDays = 0) => {
+  const userAuth = await getUserAuth();
   let querySnapshot;
 
   if (untilDays > 0) {
@@ -16,12 +19,14 @@ export const getBalance = async (untilDays = 0) => {
 
     querySnapshot = await firestore()
       .collection('entries')
+      .where('userId', '==', userAuth)
       .orderBy('entryAt')
       .endBefore(date)
       .get();
   } else {
     querySnapshot = await firestore()
       .collection('entries')
+      .where('userId', '==', userAuth)
       .get();
   }
 
@@ -31,6 +36,7 @@ export const getBalance = async (untilDays = 0) => {
 };
 
 export const getBalanceSumByDate = async days => {
+  const userAuth = await getUserAuth();
   let querySnapshot;
 
   const startBalance = (await getBalance(days)) || 0;
@@ -42,12 +48,14 @@ export const getBalanceSumByDate = async days => {
 
     querySnapshot = await firestore()
       .collection('entries')
+      .where('userId', '==', userAuth)
       .orderBy('entryAt')
       .startAt(date)
       .get();
   } else {
     querySnapshot = await firestore()
       .collection('entries')
+      .where('userId', '==', userAuth)
       .orderBy('entryAt')
       .get();
   }
@@ -73,6 +81,7 @@ export const getBalanceSumByDate = async days => {
 };
 
 export const getBalanceSumByCategory = async (days, showOthers = true) => {
+  const userAuth = await getUserAuth();
   let querySnapshot;
 
   if (days > 0) {
@@ -82,12 +91,14 @@ export const getBalanceSumByCategory = async (days, showOthers = true) => {
 
     querySnapshot = await firestore()
       .collection('entries')
+      .where('userId', '==', userAuth)
       .orderBy('entryAt')
       .startAt(date)
       .get();
   } else {
     querySnapshot = await firestore()
       .collection('entries')
+      .where('userId', '==', userAuth)
       .orderBy('entryAt')
       .get();
   }
