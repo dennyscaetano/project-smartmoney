@@ -5,8 +5,9 @@ import BalanceLabel from '../../components/BalanceLabel';
 
 import {saveEntry, deleteEntry} from '../../services/Entries';
 
+import Colors from '../../styles/Colors';
+
 const NewEntry = ({navigation}) => {
-  const currentBalance = 2064.35;
   const entry = navigation.getParam('entry', {
     id: null,
     amount: '0.00',
@@ -44,7 +45,7 @@ const NewEntry = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <BalanceLabel currentBalance={currentBalance} />
+      <BalanceLabel />
 
       <View>
         <TextInput
@@ -70,6 +71,7 @@ export default NewEntry;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: Colors.background,
     flex: 1,
     padding: 10,
   },
