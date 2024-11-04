@@ -1,64 +1,28 @@
 import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import Container from '../Core/Container';
 import EntrySummaryList from './EntrySummaryList';
 import EntrySummaryChart from './EntrySummaryChart';
 
-import Colors from '../../styles/Colors';
+const EntrySummary = () => {
+  const entriesGrouped = [
+    {key: '1', description: 'Alimentação', amount: 200},
+    {key: '2', description: 'Combustível', amount: 12},
+    {key: '3', description: 'Aluguel', amount: 120},
+    {key: '4', description: 'Lazer', amount: 250},
+    {key: '5', description: 'Outros', amount: 1200},
+  ];
 
-const EntrySummary = ({entriesGrouped}) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Categorias</Text>
+    <Container
+      title="Categorias"
+      actionLabelText="Últimos 7 dias"
+      actionButtonText="Ver mais"
+      onPressActionButton={() => {}}>
       <EntrySummaryChart />
       <EntrySummaryList entriesGrouped={entriesGrouped} />
-      <View style={styles.actionContainer}>
-        <Text style={styles.actionLabel}>Últimos 7 dias</Text>
-        <TouchableOpacity style={styles.actionButton}>
-          <Icon name="insert-chart" style={styles.actionButtonIcon} />
-          <Text style={styles.actionButtonText}>Ver mais</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </Container>
   );
 };
 
 export default EntrySummary;
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Colors.asphalt,
-    padding: 8,
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: 5,
-    margin: 5,
-  },
-  title: {
-    marginBottom: 5,
-    fontSize: 12,
-    color: Colors.white,
-  },
-  actionContainer: {
-    flexDirection: 'row',
-  },
-  actionLabel: {
-    flex: 1,
-    fontSize: 12,
-    color: Colors.white,
-  },
-  actionButton: {
-    flexDirection: 'row',
-  },
-  actionButtonIcon: {
-    marginTop: 3,
-    marginRight: 2,
-    color: Colors.white,
-  },
-  actionButtonText: {
-    fontSize: 12,
-    color: Colors.white,
-  },
-});
