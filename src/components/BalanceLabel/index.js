@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
 const BalanceLabel = () => {
   return (
@@ -10,17 +10,17 @@ const BalanceLabel = () => {
   );
 };
 
-export default BalanceLabel;
-
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    // flex: 1
     alignItems: 'center',
   },
   label: {
-    fontSize: 14,
+    fontSize: 12,
   },
   value: {
     fontSize: 18,
   },
 });
+
+export default BalanceLabel;

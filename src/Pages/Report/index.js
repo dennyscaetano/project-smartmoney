@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Picker, StyleSheet, View} from 'react-native';
+import {View, Picker, Button} from 'react-native';
 
 import EntryLabel from '../../components/BalanceLabel';
 import EntrySummary from '../../components/EntrySummary';
@@ -28,9 +28,3 @@ const Report = () => {
 };
 
 export default Report;
-
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1
-  },
-});

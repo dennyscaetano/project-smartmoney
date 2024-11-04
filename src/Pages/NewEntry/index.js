@@ -1,9 +1,9 @@
 import React from 'react';
-import {Button, StyleSheet, TextInput, View} from 'react-native';
+import {View, TextInput, Button, StyleSheet} from 'react-native';
 
 import BalanceLabel from '../../components/BalanceLabel';
 
-const NewEntry = () => {
+const NewEntry = ({navigation}) => {
   return (
     <View style={styles.container}>
       <BalanceLabel />
@@ -12,18 +12,16 @@ const NewEntry = () => {
         <TextInput style={styles.input} />
         <TextInput style={styles.input} />
         <Button title="GPS" />
-        <Button title="Câmera" />
+        <Button title="Camera" />
       </View>
 
       <View>
         <Button title="Adicionar" />
-        <Button title="Cancelar" />
+        <Button title="Cancelar" onPress={() => navigation.goBack()} />
       </View>
     </View>
   );
 };
-
-export default NewEntry;
 
 const styles = StyleSheet.create({
   container: {
@@ -35,3 +33,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
 });
+
+export default NewEntry;

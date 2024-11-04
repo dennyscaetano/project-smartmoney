@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'SmartMoney' do
-  # Pods for SmartMoney
+target 'smartMoney' do
+  # Pods for smartMoney
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -27,7 +27,7 @@ target 'SmartMoney' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'SmartMoneyTests' do
+  target 'smartMoneyTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -35,10 +35,10 @@ target 'SmartMoney' do
   use_native_modules!
 end
 
-target 'SmartMoney-tvOS' do
-  # Pods for SmartMoney-tvOS
+target 'smartMoney-tvOS' do
+  # Pods for smartMoney-tvOS
 
-  target 'SmartMoney-tvOSTests' do
+  target 'smartMoney-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
