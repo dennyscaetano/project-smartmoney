@@ -3,7 +3,7 @@ import Realm from 'realm';
 import CategorySchema from '../schemas/CategorySchema';
 import EntrySchema from '../schemas/EntrySchema';
 
-import {getAllCategories} from './Categories';
+import {getDefaultCategories} from './Categories';
 
 export const getRealm = async () => {
   const realm = await Realm.open({
@@ -11,6 +11,7 @@ export const getRealm = async () => {
     schemaVersion: 2,
   });
 
+  // dropDB(realm);
   initDb(realm);
 
   return realm;
@@ -21,7 +22,7 @@ export const initDb = realm => {
   console.log(`initDb :: Quantidade de categorias no BD: ${categoriesLength}`);
 
   if (categoriesLength === 0) {
-    const categories = getAllCategories();
+    const categories = getDefaultCategories();
 
     console.log(`initDB :: Initing db...`);
 
@@ -39,4 +40,11 @@ export const initDb = realm => {
   } else {
     console.log(`initDB :: Categories already exists... Skipping`);
   }
+};
+
+export const dropDB = realm => {
+  console.log('dropDB :: dropping db...');
+  realm.write(() => {
+    realm.deleteAll();
+  });
 };
