@@ -8,8 +8,6 @@ import EntryList from '../../components/EntryList';
 import Colors from '../../styles/Colors';
 
 const Main = ({navigation}) => {
-  const currentBalance = 2064.35;
-
   const entriesGrouped = [
     {key: '1', description: 'Alimentação', amount: 200},
     {key: '2', description: 'Combustível', amount: 12},
@@ -20,7 +18,7 @@ const Main = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <BalancePanel currentBalance={currentBalance} />
+      <BalancePanel onNewEntryPress={() => navigation.navigate('NewEntry')} />
       <EntrySummary entriesGrouped={entriesGrouped} />
       <EntryList navigation={navigation} />
     </View>

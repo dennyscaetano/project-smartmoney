@@ -1,13 +1,16 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import BalancePanelLabel from './BalancePanelLabel';
 import BalancePanelChart from './BalancePanelChart';
 
 import Colors from '../../styles/Colors';
 
-const BalancePanel = ({currentBalance}) => {
+const BalancePanel = ({onNewEntryPress}) => {
+  const currentBalance = 2064.35;
+
   return (
     <View style={styles.container}>
       <LinearGradient
@@ -16,8 +19,10 @@ const BalancePanel = ({currentBalance}) => {
         <BalancePanelLabel currentBalance={currentBalance} />
         <BalancePanelChart />
       </LinearGradient>
-      <TouchableOpacity style={styles.button}>
-        <Text>+</Text>
+      <TouchableOpacity style={styles.button} onPress={onNewEntryPress}>
+        <Text>
+          <Icon name="add" size={30} color={Colors.white} />
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -40,5 +45,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     alignItems: 'center',
     justifyContent: 'center',
+    elevation: 5,
+    shadowColor: Colors.white,
   },
 });
