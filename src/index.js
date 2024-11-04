@@ -3,10 +3,13 @@ import {FlatList, View, Text, Button, StyleSheet} from 'react-native';
 
 const App = () => {
   const addEntry = () => {
-    const x = 123;
-    alert('Olá tudo bem?');
-    console.log(x);
+    meuAlerta();
   };
+
+  const meuAlerta = () => {
+    const nome = 'Felipe';
+    alert(`Olá ${nome} tudo bem?`);
+  }
 
   return (
     <View style={{padding: 20}}>
