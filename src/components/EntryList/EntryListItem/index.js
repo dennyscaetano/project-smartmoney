@@ -4,11 +4,14 @@ import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 import Svg, {Circle, Rect} from 'react-native-svg';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import Currency from '../../Core/Currency';
+import moment from '../../../vendors/moment';
+
 import Colors from '../../../styles/Colors';
 
 const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
-  const bulletLineY = isFirstItem ? 25 : 0;
-  const bulletLineHeight = isLastItem ? 25 : 50;
+  const bulletLineY = isFirstItem ? 27 : 0;
+  const bulletLineHeight = isLastItem ? 27 : 55;
   const showBulletLine = !(isFirstItem && isLastItem);
   const bulletColor = entry.category.color || Colors.white;
 
@@ -19,7 +22,7 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
       }}>
       <View style={styles.container}>
         <View style={styles.bullet}>
-          <Svg height="50" width="30">
+          <Svg height="55" width="30">
             {showBulletLine && (
               <Rect
                 x="9"
@@ -32,7 +35,7 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
 
             <Circle
               cx="10"
-              cy="25"
+              cy="27"
               r="8"
               stroke={Colors.background}
               strokeWidth="1.5"
@@ -44,21 +47,31 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
         <View style={styles.description}>
           <Text style={styles.descriptionText}>{entry.description}</Text>
 
-          <View style={styles.details}>
-            <Icon style={styles.entryAtIcon} name="access-time" size={12} />
-            <Text style={styles.entryAtText}>{entry.entryAt.toString()}</Text>
+          <View>
+            <View style={styles.details}>
+              <Icon style={styles.entryAtIcon} name="access-time" size={12} />
+              <Text style={styles.entryAtText}>
+                {moment(entry.entryAt).calendar()}
+              </Text>
+            </View>
 
             {entry.address && (
-              <>
+              <View style={styles.details}>
                 <Icon style={styles.addressIcon} name="person-pin" size={12} />
-                <Text style={styles.addressText}>{entry.address}</Text>
-              </>
+                <Text style={styles.addressText}>
+                  {entry.address.length > 40
+                    ? entry.address.substring(0, 40 - 3) + '...'
+                    : entry.address}
+                </Text>
+              </View>
             )}
           </View>
         </View>
 
         <View style={styles.amount}>
-          <Text style={styles.amountText}>{entry.amount}</Text>
+          <Text style={styles.amountText}>
+            <Currency value={entry.amount} />
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -95,7 +108,6 @@ const styles = StyleSheet.create({
     color: Colors.metal,
     marginTop: 2,
     marginRight: 2,
-    marginLeft: 5,
   },
   addressText: {
     fontSize: 12,
