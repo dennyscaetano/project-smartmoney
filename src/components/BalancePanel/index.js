@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Button, StyleSheet} from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
 
 import BalancePanelLabel from './BalancePanelLabel';
 import BalancePanelChart from './BalancePanelChart';
@@ -13,10 +13,10 @@ const BalancePanel = () => {
   );
 };
 
+export default BalancePanel;
+
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-  }
+  },
 });
-
-export default BalancePanel;

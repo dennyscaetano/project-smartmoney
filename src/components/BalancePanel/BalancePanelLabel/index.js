@@ -10,6 +10,8 @@ const BalancePanelLabel = () => {
   );
 };
 
+export default BalancePanelLabel;
+
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
@@ -22,5 +24,3 @@ const styles = StyleSheet.create({
     fontSize: 22,
   },
 });
-
-export default BalancePanelLabel;

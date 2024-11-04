@@ -1,22 +1,22 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-import EntrySummaryChart from './EntrySummaryChart';
 import EntrySummaryList from './EntrySummaryList';
+import EntrySummaryChart from './EntrySummaryChart';
 
 const EntrySummary = () => {
   return (
     <View style={styles.container}>
-      <EntrySummaryChart />
       <EntrySummaryList />
+      <EntrySummaryChart />
     </View>
   );
 };
+
+export default EntrySummary;
 
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
   },
 });
-
-export default EntrySummary;

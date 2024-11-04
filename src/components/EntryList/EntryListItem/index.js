@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 const EntryListItem = () => {
   return (
@@ -9,6 +9,6 @@ const EntryListItem = () => {
   );
 };
 
-const styles = StyleSheet.create({});
-
 export default EntryListItem;
+
+const styles = StyleSheet.create({});

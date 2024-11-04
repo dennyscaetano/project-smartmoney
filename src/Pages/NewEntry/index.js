@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, TextInput, Button, StyleSheet} from 'react-native';
+import {Button, StyleSheet, TextInput, View} from 'react-native';
 
 import BalanceLabel from '../../components/BalanceLabel';
 
@@ -12,7 +12,7 @@ const NewEntry = ({navigation}) => {
         <TextInput style={styles.input} />
         <TextInput style={styles.input} />
         <Button title="GPS" />
-        <Button title="Camera" />
+        <Button title="Câmera" />
       </View>
 
       <View>
@@ -22,6 +22,8 @@ const NewEntry = ({navigation}) => {
     </View>
   );
 };
+
+export default NewEntry;
 
 const styles = StyleSheet.create({
   container: {
@@ -33,5 +35,3 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
 });
-
-export default NewEntry;
