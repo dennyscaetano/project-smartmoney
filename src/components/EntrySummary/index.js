@@ -4,11 +4,11 @@ import {StyleSheet, View} from 'react-native';
 import EntrySummaryList from './EntrySummaryList';
 import EntrySummaryChart from './EntrySummaryChart';
 
-const EntrySummary = () => {
+const EntrySummary = ({entriesGrouped}) => {
   return (
     <View style={styles.container}>
-      <EntrySummaryList />
       <EntrySummaryChart />
+      <EntrySummaryList entriesGrouped={entriesGrouped} />
     </View>
   );
 };
