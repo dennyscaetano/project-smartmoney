@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'smartMoney' do
-  # Pods for smartMoney
+target 'SmartMoney' do
+  # Pods for SmartMoney
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -33,7 +33,7 @@ target 'smartMoney' do
 
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
-  target 'smartMoneyTests' do
+  target 'SmartMoneyTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -41,10 +41,10 @@ target 'smartMoney' do
   use_native_modules!
 end
 
-target 'smartMoney-tvOS' do
-  # Pods for smartMoney-tvOS
+target 'SmartMoney-tvOS' do
+  # Pods for SmartMoney-tvOS
 
-  target 'smartMoney-tvOSTests' do
+  target 'SmartMoney-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
