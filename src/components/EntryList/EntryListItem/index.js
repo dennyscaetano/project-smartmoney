@@ -51,7 +51,7 @@ const EntryListItem = ({entry, isFirstItem, isLastItem, onEntryPress}) => {
             <View style={styles.details}>
               <Icon style={styles.entryAtIcon} name="access-time" size={12} />
               <Text style={styles.entryAtText}>
-                {moment(entry.entryAt).calendar()}
+                {moment(entry.entryAt.toDate()).calendar()}
               </Text>
             </View>
 

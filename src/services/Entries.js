@@ -2,92 +2,117 @@ import {Alert} from 'react-native';
 
 import moment from '../vendors/moment';
 
-import {getRealm} from './Realm';
-import {getUUID} from '../services/UUID';
+import firestore from '@react-native-firebase/firestore';
 
 export const getEntries = async (days, category) => {
-  let realm = await getRealm();
-
-  realm = realm.objects('Entry');
+  let querySnapshot;
 
   if (days > 0) {
     const date = moment()
       .subtract(days, 'days')
       .toDate();
 
-    console.log('getEntries :: days ', days);
-
-    realm = realm.filtered('entryAt >= $0', date);
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .startAt(date)
+      .get();
+  } else {
+    querySnapshot = await firestore()
+      .collection('entries')
+      .orderBy('entryAt')
+      .get();
   }
+
+  let entries = querySnapshot.docs.map(documentSnapshot => {
+    return {...documentSnapshot.data(), id: documentSnapshot.id};
+  });
 
   if (category && category.id) {
-    console.log('getEntries :: category ', JSON.stringify(category));
-
-    realm = realm.filtered('category == $0', category);
+    entries = entries.filter(entry => entry.category.id === category.id);
   }
-
-  const entries = realm.sorted('entryAt', true);
-
-  console.log('getEntries :: entries ', JSON.stringify(entries));
 
   return entries;
 };
 
-export const saveEntry = async entry => {
-  const realm = await getRealm();
+export const addEntry = async entry => {
   let data = {};
 
-  console.log('saveEntry :: value: ', JSON.stringify(entry));
+  console.log('addEntry :: value: ', JSON.stringify(entry));
 
   try {
-    const category = realm
-      .objects('Category')
-      .filtered('id == $0', entry.category.id)[0];
-    realm.write(() => {
-      data = {
-        id: entry.id || getUUID(),
-        amount: entry.amount || 0,
-        entryAt: entry.entryAt,
-        description: entry.category.name,
-        photo: entry.photo,
-        address: entry.address,
-        latitude: entry.latitude,
-        longitude: entry.longitude,
-        isInit: entry.isInit || false,
-        category: category,
-      };
+    data = {
+      amount: entry.amount,
+      description: entry.category.name,
+      entryAt: entry.entryAt || new Date(),
+      latitude: entry.latitude,
+      longitude: entry.longitude,
+      address: entry.address,
+      photo: entry.photo,
+      isInit: entry.isInit || false,
+      category: entry.category,
+    };
 
-      realm.create('Entry', data, true);
-    });
-
-    console.log('saveEntry :: data: ', JSON.stringify(data));
+    await firestore()
+      .collection('entries')
+      .add(data);
   } catch (error) {
     console.error(
-      'saveEntry :: error on save object: ',
+      'addEntry :: error on save object: ',
       JSON.stringify(data),
       JSON.stringify(error),
     );
-    Alert.alert('Erro ao salvar os dados de lançamento.');
+    Alert.alert('Erro', 'Houve um erro ao salvar este lançamento.');
+  }
+
+  return data;
+};
+
+export const updateEntry = async entry => {
+  console.log('updateEntry :: entry object: ' + JSON.stringify(entry));
+
+  let data = {};
+  try {
+    data = {
+      amount: entry.amount,
+      description: entry.category.name,
+      entryAt: entry.entryAt || new Date(),
+      latitude: entry.latitude,
+      longitude: entry.longitude,
+      address: entry.address,
+      photo: entry.photo,
+      isInit: entry.isInit || false,
+      category: entry.category,
+    };
+
+    await firestore()
+      .collection('entries')
+      .doc(entry.id)
+      .update(data);
+  } catch (error) {
+    console.log(
+      'updateEntry :: error on save object: ' + JSON.stringify(this.data),
+    );
+    console.log('updateEntry :: error on save object: ' + error);
+
+    Alert.alert('Erro', 'Houve um erro ao atualizar este lançamento.');
   }
 
   return data;
 };
 
 export const deleteEntry = async entry => {
-  const realm = await getRealm();
-
   try {
-    const entryRealmObject = realm
-      .objects('Entry')
-      .filtered('id == $0', entry.id)[0];
-    realm.write(() => {
-      realm.delete(entryRealmObject);
-    });
+    await firestore()
+      .collection('entries')
+      .doc(entry.id)
+      .delete();
   } catch (error) {
-    console.error(
-      'deleteEntry :: error on delete object: ',
-      JSON.stringify(entry),
+    console.log(
+      'deleteEntry :: error on delete object: ' + JSON.stringify(entry),
     );
-    Alert.alert('Erro ao excluir este lançamento.');
+    console.log('deleteEntry :: error on save delete: ' + error);
+
+    Alert.alert('Erro', 'Houve um erro ao apagar este lançamento.');
   }
 };

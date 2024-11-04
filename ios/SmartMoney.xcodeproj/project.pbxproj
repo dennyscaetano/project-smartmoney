@@ -32,8 +32,6 @@
 		27204B86C8A447CCA2A76A55 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 623EEDB9FB1C4D98B61997D5 /* Octicons.ttf */; };
 		06CE4987FDAE48F5A5D5C358 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 300B1A85E9CC4242B4FDAFCB /* SimpleLineIcons.ttf */; };
 		10D4DB4C52084B90A9C5952C /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 967F326B74284E8BB89542F0 /* Zocial.ttf */; };
-		C56E14C640AF426FBAC11D6B /* libRealmJS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D055F2DA32FB4BC88BD0034B /* libRealmJS.a */; };
-		0A60CDE18BB44EA0BBDD3FB1 /* RealmJSTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 1AB91247F6514C2F9A4493D5 /* RealmJSTests.xctest */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,9 +84,6 @@
 		623EEDB9FB1C4D98B61997D5 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		300B1A85E9CC4242B4FDAFCB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		967F326B74284E8BB89542F0 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7E13F224719049FBBA1A9AEF /* RealmJS.xcodeproj */ = {isa = PBXFileReference; name = "RealmJS.xcodeproj"; path = "../node_modules/realm/src/RealmJS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		D055F2DA32FB4BC88BD0034B /* libRealmJS.a */ = {isa = PBXFileReference; name = "libRealmJS.a"; path = "libRealmJS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		1AB91247F6514C2F9A4493D5 /* RealmJSTests.xctest */ = {isa = PBXFileReference; name = "RealmJSTests.xctest"; path = "RealmJSTests.xctest"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.cfbundle; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +99,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DAD4378AC074CEEA25FB825 /* libGCDWebServers.a in Frameworks */,
-				C56E14C640AF426FBAC11D6B /* libRealmJS.a in Frameworks */,
-				0A60CDE18BB44EA0BBDD3FB1 /* RealmJSTests.xctest in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +162,6 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				7E13F224719049FBBA1A9AEF /* RealmJS.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -557,7 +549,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Debug;
@@ -588,7 +579,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Release;
@@ -611,7 +601,6 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Debug;
@@ -633,7 +622,6 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Release;
@@ -672,7 +660,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Debug;
@@ -711,7 +698,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Release;
@@ -749,7 +735,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Debug;
@@ -787,7 +772,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 			};
 			name = Release;

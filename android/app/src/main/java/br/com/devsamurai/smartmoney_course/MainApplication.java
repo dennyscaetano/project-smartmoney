@@ -10,7 +10,6 @@ import com.facebook.react.ReactApplication;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import org.reactnative.camera.RNCameraPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import io.realm.react.RealmReactPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
