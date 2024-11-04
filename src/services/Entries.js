@@ -37,18 +37,20 @@ export const saveEntry = async (value, entry = {}) => {
   const realm = await getRealm();
   let data = {};
 
+  console.log('saveEntry :: value: ', JSON.stringify(value));
+
   try {
     realm.write(() => {
       data = {
         id: value.id || entry.id || getUUID(),
-        amount: value.amount || entry.amount,
-        entryAt: value.entryAt || entry.entryAt,
+        amount: value.amount || entry.amount || 0,
+        entryAt: value.entryAt || entry.entryAt || new Date(),
         description: value.category.name,
         photo: value.photo,
         address: value.address,
         latitude: value.latitude,
         longitude: value.longitude,
-        isInit: false,
+        isInit: value.isInit || false,
         category: value.category || entry.category,
       };
 
@@ -57,7 +59,11 @@ export const saveEntry = async (value, entry = {}) => {
 
     console.log('saveEntry :: data: ', JSON.stringify(data));
   } catch (error) {
-    console.error('saveEntry :: error on save object: ', JSON.stringify(data));
+    console.error(
+      'saveEntry :: error on save object: ',
+      JSON.stringify(data),
+      JSON.stringify(error),
+    );
     Alert.alert('Erro ao salvar os dados de lançamento.');
   }
 

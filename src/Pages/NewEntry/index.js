@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StatusBar, View, StyleSheet} from 'react-native';
 
 import ActionFooter, {
   ActionPrimaryButton,
@@ -51,7 +51,7 @@ const NewEntry = ({navigation}) => {
 
   const onSave = () => {
     const data = {
-      amount: parseFloat(amount),
+      amount: amount,
       category: category,
       photo: photo,
       address: address,
@@ -76,6 +76,7 @@ const NewEntry = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" backgroundColor={Colors.background} />
       <BalanceLabel />
 
       <View style={styles.formContainer}>
