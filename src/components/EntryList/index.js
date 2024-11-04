@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 
 import EntryListItem from './EntryListItem';
 import Container from '../Core/Container';
@@ -29,12 +29,12 @@ const EntryList = () => {
       <FlatList
         data={entries}
         keyExtractor={item => item.id}
-        renderItem={({item}) => (
-          <View>
-            <Text>
-              {item.description} - ${item.amount}
-            </Text>
-          </View>
+        renderItem={({item, index}) => (
+          <EntryListItem
+            entry={item}
+            isFirstItem={index === 0}
+            isLastItem={index === entries.length - 1}
+          />
         )}
       />
     </Container>
@@ -43,14 +43,4 @@ const EntryList = () => {
 
 export default EntryList;
 
-const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 10,
-  },
-});
+const styles = StyleSheet.create({});
